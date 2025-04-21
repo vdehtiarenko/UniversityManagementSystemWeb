@@ -1,0 +1,26 @@
+﻿@using ApplicationCore.DTO;
+
+@model GroupDto
+
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="/css/form-styles.css" rel="stylesheet">
+</head>
+<body>
+	<div class="container">
+		<h2>Edit Group</h2>
+		<form method="post" enctype="multipart/form-data">
+			<div class="form-group">
+				<label for="Name">Name</label>
+				<input class="form-control" asp-for="Name">
+				<span asp-validation-for="Name" class="text-danger"></span>
+			</div>
+			<div class="btn-container">
+				<a asp-controller="Group" asp-action="Index" asp-route-courseId="@Model.CourseId" class="btn btn-cancel">Cancel</a>
+				<button type="submit" class="btn btn-add">Submit</button>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

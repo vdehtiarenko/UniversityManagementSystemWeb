@@ -1,0 +1,37 @@
+﻿@using ApplicationCore.Entities;
+@using System.Collections.ObjectModel;
+
+@model ObservableCollection<Student>
+
+@{
+	var courseId = ViewBag.CourseId;
+}
+
+<table class="table-striped">
+	<thead>
+		<tr>
+			<th></th>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var student in Model)
+		{
+			<tr>
+				<td><img src="/images/student.png" style="height: 40px; width: 40px" /></td>
+				<td>@student.FirstName</td>
+				<td>@student.LastName</td>
+				<td>
+					<a class="btn action-btne" asp-controller="Student" asp-action="Edit" asp-route-courseId="@courseId" asp-route-groupId="@student.GroupId" asp-route-studentId="@student.StudentId">
+						<img src="/images/edit-box.png" />
+					</a>
+					<a class="btn action-btnd" asp-controller="Student" asp-action="Delete" asp-route-courseId="@courseId" asp-route-groupId="@student.GroupId" asp-route-studentId="@student.StudentId" onclick="return confirm('Would you like to confirm your choice ?')">
+						<img src="/images/delete.png" />
+					</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

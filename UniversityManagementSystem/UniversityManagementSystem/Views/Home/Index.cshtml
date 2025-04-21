@@ -1,0 +1,143 @@
+﻿@using ApplicationCore.Entities
+@using System.Collections.ObjectModel
+
+@model ObservableCollection<Course>
+@{
+
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Home Page</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		  integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<link rel="stylesheet" href="~/css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<aside id="sidebar" class="expand">
+			<div class="d-flex">
+				<button class="toggle-btn" type="button">
+					<img class="sidebar-logo-img" src="/images/grid.png" />
+				</button>
+				<div class="sidebar-logo">
+					<label>University</label>
+				</div>
+			</div>
+			<ul class="sidebar-nav">
+				<li class="sidebar-item">
+					<a asp-controller="Home" asp-action="Index" class="sidebar-link">
+						<img class="sidebar-logo-img" src="/images/home.png" />
+						<span>Home</span>
+					</a>
+				</li>
+				<li class="sidebar-item">
+					<a asp-controller="Teacher" asp-action="Index" class="sidebar-link">
+						<img class="sidebar-logo-img" src="/images/teachers.png" />
+						<span>Teachers</span>
+					</a>
+				</li>
+				<li class="sidebar-item">
+					<a asp-controller="Schedule" asp-action="Index" class="sidebar-link">
+						<img class="sidebar-logo-img" src="/images/sсhedule.png" />
+						<span>Schedule</span>
+					</a>
+				</li>
+				<li class="sidebar-item">
+					<a asp-controller="Notifications" asp-action="Index" class="sidebar-link">
+						<img class="sidebar-logo-img" src="/images/notifications.png" />
+						<span>Notifications</span>
+					</a>
+				</li>
+				<li class="sidebar-item">
+					<a asp-controller="Settings" asp-action="Index" class="sidebar-link">
+						<img class="sidebar-logo-img" src="/images/settings.png" />
+						<span>Settings</span>
+					</a>
+				</li>
+			</ul>
+			<div class="sidebar-footer">
+				<a href="#" class="sidebar-link">
+					<img class="sidebar-logo-img" src="/images/exit.png" />
+					<span>Logout</span>
+				</a>
+			</div>
+		</aside>
+		<div class="main">
+			<nav class="navbar navbar-expand mb-5">
+				<form action="#" class="d-none d-sm-inline-block"></form>
+				<div class="navbar-collapse collapse">
+					<ul class="navbar-nav ms-auto px-3">
+						<li class="nav-item dropdown">
+							<a asp-controller="Profile" asp-action="Index" class="nav-icon pe-md-0">
+								<img src="/images/user.png" class="avatar img-fluid" alt="">
+							</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+			<main class="content px-5">
+				<div class="mb-2">
+					<h2>List of courses</h2>
+				</div>
+				<div class="d-flex justify-content-between align-items-center mb-3">
+					<h5>Number of course @Model.Count</h5>
+					<div class="d-flex align-items-center">
+						<h5 class="me-2 px-2">Add new</h5>
+						<button class="btn btn-primary position-relative rounded-circle p-0 d-flex align-items-center justify-content-center"
+								style="width: 42px; height: 42px; background-color: #0a2a66; top: -6px; border: none;">
+							<img src="/images/plus.png" alt="Icon" style="width: 60%; height: 60%;">
+						</button>
+					</div>
+				</div>
+				<div class="scroll-table">
+					<table class="table-striped">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Description</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+							</tr>
+							@foreach (var course in Model)
+							{
+								<tr>
+									<td>
+										<a asp-controller="Group" asp-action="Index" asp-route-courseId="@course.CourseId" style="display: block; text-decoration: none; color: inherit; padding: 10px;">
+											@course.Name
+										</a>
+									</td>
+
+									<td>
+										<a asp-controller="Group" asp-action="Index" asp-route-courseId="@course.CourseId" style="display: block; text-decoration: none; color: inherit; padding: 10px;">
+											@course.Description
+										</a>
+									</td>
+
+									<td>
+										<a class="btn action-btne">
+											<img src="/images/edit-box.png" />
+										</a>
+										<a class="btn action-btnd">
+											<img src="/images/delete.png" />
+										</a>
+									</td>
+								</tr>
+							}
+						</tbody>
+					</table>
+				</div>
+			</main>
+		</div>
+	</div>
+	<script src="~/js/script.js"></script>
+</body>
+</html>
